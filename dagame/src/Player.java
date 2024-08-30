@@ -5,29 +5,31 @@ import java.util.Map;
 public class Player extends Entity{
 
     Map<String, Integer> inventory = new HashMap<>();
-    Map<Integer, Move> moves = new HashMap<>();
 
     public Player(String name){
         this.name = name;
         this.lives = 50;
         this.strength = 5;
         this.agility = 3;
-        moves.put(1, new BasicAttackMove(this));
-        moves.put(2, new FleeMove(this));
+        this.moves.put(1, new BasicAttackMove(this));
+        this.moves.put(2, new FleeMove(this));
     }
 
+    @Override
     public int attackChoice(){
-        boolean isInteger = false;
+        boolean isValid = false;
         int choice = 0;
         System.out.println("YOUR MOVES");
         for (Map.Entry<Integer, Move> entry : moves.entrySet()) {
             System.out.println(entry.getKey() + ". " + entry.getValue().name);
         }
-        while (!isInteger) {
+        while (!isValid) {
             try {
                 System.out.print("Enter the corresponding number: ");
                 choice = (int) Main.scanner.nextInt();
-                isInteger = true;
+                if (moves.containsKey(choice)) {
+                    isValid = true;
+                }
             } catch (InputMismatchException e) {
                 Main.scanner.next();
             }

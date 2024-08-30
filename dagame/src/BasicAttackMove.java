@@ -6,9 +6,9 @@ public class BasicAttackMove extends Move{
 
     }
 
-    public <T> T use(Entity target) {
+    public boolean use(Entity target) {
         target.modLives(-mover.strength);
-        System.out.println("You have dealt " + mover.strength + " damage!");
-        return null;
+        System.out.println(mover.name + " has dealt " + mover.strength + " damage!");
+        return true;
     }
 }

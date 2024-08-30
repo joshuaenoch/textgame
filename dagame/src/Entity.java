@@ -21,11 +21,6 @@ public abstract class Entity {
         this.strength += amount;
     }
 
-    public boolean flee(Entity pursuer){
-        int chance = (int) Math.random() * 2 - 2 + (this.agility - pursuer.agility);
-        return chance > 0;
-    }
-
     public boolean isAlive(){
         return lives > 0;
     }
