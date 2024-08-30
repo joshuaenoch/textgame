@@ -1,3 +1,7 @@
+package item;
+
+import entity.Player;
+
 public abstract class Item {
     Player owner;
     String name;

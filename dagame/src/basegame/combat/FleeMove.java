@@ -1,4 +1,8 @@
-public class FleeMove extends Move{
+package combat;
+
+import combat.Move;
+
+public class FleeMove extends Move {
     public FleeMove(Entity entity){
         this.mover = entity;
         this.name = "Flee";

@@ -1,3 +1,5 @@
+package combat;
+
 import java.util.InputMismatchException;
 
 public class Battle {

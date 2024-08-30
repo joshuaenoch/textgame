@@ -1,8 +1,15 @@
+package entity;
+
+import combat.BasicAttackMove;
+import combat.FleeMove;
+import combat.Move;
+import entity.Entity;
+
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 
-public class Player extends Entity{
+public class Player extends Entity {
 
     Map<String, Integer> inventory = new HashMap<>();
 

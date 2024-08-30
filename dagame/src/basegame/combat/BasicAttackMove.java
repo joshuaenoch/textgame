@@ -1,4 +1,8 @@
-public class BasicAttackMove extends Move{
+package combat;
+
+import entity.Entity;
+
+public class BasicAttackMove extends Move {
 
     public BasicAttackMove(Entity entity){
         this.mover = entity;

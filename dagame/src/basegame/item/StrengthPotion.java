@@ -1,4 +1,9 @@
-public class StrengthPotion extends Item{
+package item;
+
+import entity.Player;
+import item.Item;
+
+public class StrengthPotion extends Item {
     public StrengthPotion(Player owner){
         this.owner = owner;
     }

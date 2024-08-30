@@ -1,3 +1,5 @@
+package travel;
+
 public abstract class LocationAction {
     String name;
 

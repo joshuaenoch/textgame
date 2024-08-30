@@ -1,4 +1,9 @@
-public class HuaiRen extends Entity{
+package entity;
+
+import combat.BasicAttackMove;
+import entity.Entity;
+
+public class HuaiRen extends Entity {
 
     public HuaiRen(){
         this.name = "Huai Ren";
