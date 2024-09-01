@@ -1,7 +1,6 @@
-package entity;
+package basegame.entity;
 
-import combat.BasicAttackMove;
-import entity.Entity;
+import basegame.combat.BasicAttackMove;
 
 public class HuaiRen extends Entity {
 
@@ -10,7 +9,7 @@ public class HuaiRen extends Entity {
         this.lives = 50;
         this.strength = 5;
         this.agility = 3;
-        moves.put(1, new BasicAttackMove(this));
+        moves.add(new BasicAttackMove(this));
     }
 
     @Override

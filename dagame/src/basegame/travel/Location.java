@@ -1,4 +1,4 @@
-package travel;
+package basegame.travel;
 
 import java.util.ArrayList;
 
@@ -32,5 +32,13 @@ public class Location {
         } else {
             System.out.println("???");
         }
+    }
+
+    public String toString(){
+        return name;
+    }
+
+    public ArrayList<Location> getNeighbors(){
+        return neighbors;
     }
 }

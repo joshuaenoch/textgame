@@ -1,21 +1,20 @@
-package entity;
+package basegame.entity;
 
-import combat.Move;
+import basegame.combat.Move;
 
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
 
 public abstract class Entity {
     protected int lives;
     protected int agility;
     protected int strength;
     protected String name;
-    Map<Integer, Move> moves = new HashMap<>();
+    protected ArrayList<Move> moves = new ArrayList<>();
 
-    public void modLives(int lives, int agility, int strength){
+    public void modStats(int lives, int agility, int strength){
         this.lives += lives;
-        this.agility = agility;
-        this.strength = strength;
+        this.agility += agility;
+        this.strength += strength;
     }
 
     public int getLives(){
@@ -27,11 +26,15 @@ public abstract class Entity {
     }
 
     public int getAgility(){
-        return lives;
+        return agility;
     }
 
-    public String getName(){
+    public String toString(){
         return name;
+    }
+
+    public Move getMove(int target){
+        return moves.get(target);
     }
 
     public boolean isAlive(){
@@ -39,7 +42,7 @@ public abstract class Entity {
     }
 
     public int attackChoice(){
-        return 1;
+        return 0;
     }
 
     public abstract void defeat();

@@ -1,6 +1,6 @@
-package combat;
+package basegame.combat;
 
-import entity.Entity;
+import basegame.entity.Entity;
 
 public class BasicAttackMove extends Move {
 
@@ -11,8 +11,8 @@ public class BasicAttackMove extends Move {
     }
 
     public boolean use(Entity target) {
-        target.modLives(-mover.strength);
-        System.out.println(mover.name + " has dealt " + mover.strength + " damage!");
+        target.modStats(-mover.getStrength(), 0, 0);
+        System.out.println(mover.toString() + " has dealt " + mover.getStrength() + " damage!");
         return true;
     }
 }

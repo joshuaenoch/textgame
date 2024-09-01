@@ -1,6 +1,7 @@
-package combat;
+package basegame.combat;
 
-import java.util.InputMismatchException;
+import basegame.entity.Entity;
+import basegame.entity.Player;
 
 public class Battle {
     private Entity p1;
@@ -34,15 +35,15 @@ public class Battle {
 
     public <T> void turn(Entity mover, Entity target){
         int move = mover.attackChoice();
-        boolean result = mover.moves.get(move).use(target);
+        boolean result = mover.getMove(move).use(target);
         if(!result) {
             ongoing = false;
         }
     }
 
     public void display(){
-        System.out.println(p1.name + "\nLives: " + p1.lives);
-        System.out.println(p2.name + "\nLives: " + p2.lives);
+        System.out.println(p1.toString() + "\nLives: " + p1.getLives());
+        System.out.println(p2.toString() + "\nLives: " + p2.getLives());
     }
 
 }

@@ -1,4 +1,4 @@
-package travel;
+package basegame.travel;
 
 public abstract class LocationAction {
     String name;

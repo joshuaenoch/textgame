@@ -1,7 +1,9 @@
-import combat.Battle;
-import entity.HuaiRen;
-import entity.Player;
-import travel.Location;
+package basegame;
+
+import basegame.combat.Battle;
+import basegame.entity.HuaiRen;
+import basegame.entity.Player;
+import basegame.travel.Location;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
@@ -15,10 +17,11 @@ public class Main {
         Main mainInstance = new Main();
         mainInstance.characterCreation();
         mainInstance.mapInit();
-        while(true){
-            System.out.println("Current location: " + currLocation.name);
+        /*while(true){
+            System.out.println("Current location: " + currLocation.toString());
             mainInstance.travel();
-        }
+        }*/
+        mainInstance.battle();
     }
 
     public int travel(){
@@ -26,17 +29,14 @@ public class Main {
         int choice = 0;
         int index = 1;
         System.out.println("LOCATIONS");
-        for (Location neighbor: currLocation.neighbors){
-            System.out.println(index + ". " + neighbor.name);
-            index++;
-        }
+        Utils.printNumList(currLocation.getNeighbors());
         System.out.print("Where do you wish to go? ");
         while (!isValid) {
             try {
                 System.out.print("Enter the corresponding number: ");
                 choice = ((int) Main.scanner.nextInt()) - 1;
-                if (currLocation.neighbors.get(choice) != null) {
-                    currLocation = currLocation.neighbors.get(choice);
+                if (currLocation.getNeighbors().get(choice) != null) {
+                    currLocation = currLocation.getNeighbors().get(choice);
                     isValid = true;
                 }
             } catch (InputMismatchException e) {
@@ -54,7 +54,7 @@ public class Main {
 
     public void battle(){
         while(true){
-            System.out.println("Good luck " + player.name);
+            System.out.println("Good luck " + player.toString());
             HuaiRen enemy = new HuaiRen();
             Battle battle = new Battle(player, enemy);
             battle.sequence();

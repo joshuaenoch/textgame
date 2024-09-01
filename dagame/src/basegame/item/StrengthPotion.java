@@ -1,7 +1,6 @@
-package item;
+package basegame.item;
 
-import entity.Player;
-import item.Item;
+import basegame.entity.Player;
 
 public class StrengthPotion extends Item {
     public StrengthPotion(Player owner){
@@ -10,7 +9,5 @@ public class StrengthPotion extends Item {
 
     @Override
     public void use() {
-        owner.modStrength(1);
-        super.use();
     }
 }
