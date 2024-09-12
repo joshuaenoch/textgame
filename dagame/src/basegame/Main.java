@@ -4,24 +4,25 @@ import basegame.combat.Battle;
 import basegame.entity.HuaiRen;
 import basegame.entity.Player;
 import basegame.travel.Location;
+import basegame.travel.MainLocation;
 
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
     public static Scanner scanner = new Scanner(System.in);
-    private static Player player;
-    private static Location currLocation;
+    public static Player player;
+    public static MainLocation currLocation;
 
     public static void main(String[] args) {
         Main mainInstance = new Main();
         mainInstance.characterCreation();
         mainInstance.mapInit();
-        /*while(true){
+        while(true){
             System.out.println("Current location: " + currLocation.toString());
             mainInstance.travel();
-        }*/
-        mainInstance.battle();
+        }
+        //mainInstance.battle();
     }
 
     public int travel(){
@@ -36,7 +37,11 @@ public class Main {
                 System.out.print("Enter the corresponding number: ");
                 choice = ((int) Main.scanner.nextInt()) - 1;
                 if (currLocation.getNeighbors().get(choice) != null) {
-                    currLocation = currLocation.getNeighbors().get(choice);
+                    if(!currLocation.getNeighbors().get(choice).unlocked){
+                        System.out.println("You have not unlocked this area yet");
+                    }
+                    currLocation = (MainLocation) currLocation.getNeighbors().get(choice);
+                    currLocation.onVisit();
                     isValid = true;
                 }
             } catch (InputMismatchException e) {
@@ -74,15 +79,19 @@ public class Main {
     }
 
     public void mapInit(){
-        Location valley = new Location("Valley");
-        Location town = new Location("Town");
+        MainLocation valley = new MainLocation("Valley");
+        MainLocation town = new MainLocation("Town");
         valley.addNeighbor(town);
-        Location forest = new Location("Forest");
+        MainLocation forest = new MainLocation("Forest");
         town.addNeighbor(forest);
-        Location mountain = new Location("Mountain");
+        MainLocation mountain = new MainLocation("Mountain");
         town.addNeighbor(mountain);
-        Location beach = new Location("Beach");
+        MainLocation beach = new MainLocation("Beach");
         mountain.addNeighbor(beach);
         currLocation = valley;
+    }
+
+    public void npcInit(){
+        
     }
 }

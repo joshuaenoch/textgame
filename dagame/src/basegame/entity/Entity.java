@@ -8,6 +8,7 @@ public abstract class Entity {
     protected int lives;
     protected int agility;
     protected int strength;
+    protected boolean hostile;
     protected String name;
     protected ArrayList<Move> moves = new ArrayList<>();
 
@@ -15,6 +16,10 @@ public abstract class Entity {
         this.lives += lives;
         this.agility += agility;
         this.strength += strength;
+    }
+
+    public void setHostility(boolean hostility){
+        this.hostile = hostility;
     }
 
     public int getLives(){
@@ -27,6 +32,10 @@ public abstract class Entity {
 
     public int getAgility(){
         return agility;
+    }
+
+    public boolean isHostile(){
+        return hostile;
     }
 
     public String toString(){

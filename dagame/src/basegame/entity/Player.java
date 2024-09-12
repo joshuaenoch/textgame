@@ -5,14 +5,19 @@ import basegame.Utils;
 import basegame.combat.BasicAttackMove;
 import basegame.combat.FleeMove;
 import basegame.combat.Move;
+import basegame.item.Item;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.InputMismatchException;
 import java.util.Map;
 
 public class Player extends Entity {
 
-    protected Map<String, Integer> inventory = new HashMap<>();
+    protected ArrayList<Item> inventory = new ArrayList<>();
+    private int inventoryCap = 10;
+    // money, wood, stone
+    protected int[] currencies = new int[3];
 
     public Player(String name){
         this.name = name;
@@ -23,8 +28,22 @@ public class Player extends Entity {
         this.moves.add(new FleeMove(this));
     }
 
-    public Map<String, Integer> getInvetory(){
+    public ArrayList<Item> getInventory(){
         return inventory;
+    }
+
+    public void addToInventory(Item item){
+        if(inventory.size() <= inventoryCap){
+            inventory.add(item);
+        } else{
+            // TODO: make an event where the player can choose what to keep
+            System.out.println("Your inventory is full and could not fit " + item.toString());
+        }
+    }
+
+    public int increaseInventoryCap(){
+        inventoryCap += 5;
+        return inventoryCap;
     }
 
     @Override

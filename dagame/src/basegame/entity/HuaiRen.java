@@ -14,6 +14,6 @@ public class HuaiRen extends Entity {
 
     @Override
     public void defeat() {
-        System.out.println("You have won. Congrats!");
+        System.out.println("You have defeated HuaiRen");
     }
 }

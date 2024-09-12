@@ -1,21 +1,18 @@
 package basegame.travel;
 
+import basegame.Utils;
+
 import java.util.ArrayList;
 
 public class Location {
-    String name;
-    private static ArrayList<LocationAction> actions = new ArrayList<>();
-    ArrayList<Location> neighbors = new ArrayList<>();
-    boolean unlocked;
+    protected String name;
+    protected static ArrayList<LocationAction> actions = new ArrayList<>();
+    protected static ArrayList<Encounter> encounters = new ArrayList<>();
+    public boolean unlocked;
 
     public Location(String name){
         this.name = name;
-        unlocked = false;
-    }
-
-    public void addNeighbor(Location location){
-        this.neighbors.add(location);
-        location.neighbors.add(this);
+        unlocked = true;
     }
 
     public void addAction(LocationAction action){
@@ -26,19 +23,21 @@ public class Location {
         actions.remove(action);
     }
 
-    public void print(){
+    public String toString(){
         if(unlocked){
-            System.out.println(name);
+            return name;
         } else {
-            System.out.println("???");
+            return "???";
         }
     }
 
-    public String toString(){
-        return name;
-    }
-
-    public ArrayList<Location> getNeighbors(){
-        return neighbors;
+    public void onVisit(){
+        for(Encounter encounter: encounters){
+            encounter.occur();
+        }
+        // check for updates - people, places, etc
+        // display actions
+        System.out.println("ACTIONS");
+        Utils.printNumList(actions);
     }
 }
