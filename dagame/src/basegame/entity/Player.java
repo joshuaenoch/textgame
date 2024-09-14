@@ -32,6 +32,10 @@ public class Player extends Entity {
         return inventory;
     }
 
+    public int[] getCurrencies(){
+        return currencies;
+    }
+
     public void addToInventory(Item item){
         if(inventory.size() <= inventoryCap){
             inventory.add(item);

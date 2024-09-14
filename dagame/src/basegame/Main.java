@@ -6,23 +6,58 @@ import basegame.entity.Player;
 import basegame.travel.Location;
 import basegame.travel.MainLocation;
 
+import javax.swing.*;
+import javax.swing.border.Border;
+import java.awt.*;
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class Main {
+    public static final Main mainInstance = new Main();
     public static Scanner scanner = new Scanner(System.in);
     public static Player player;
     public static MainLocation currLocation;
+    public static JFrame frame = new JFrame("Game box");
+    public static JPanel currInfoPanel;
 
     public static void main(String[] args) {
-        Main mainInstance = new Main();
         mainInstance.characterCreation();
         mainInstance.mapInit();
+
+        frame.setSize(600, 400);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new GridLayout(3, 3));
+        frame.setVisible(true);
+
+        mainInstance.loadInfoPanel();
+
         while(true){
             System.out.println("Current location: " + currLocation.toString());
             mainInstance.travel();
+
+            mainInstance.loadInfoPanel();
         }
-        //mainInstance.battle();
+        /*mainInstance.battle();*/
+    }
+
+    public void loadInfoPanel(){
+        if (currInfoPanel != null) {
+            frame.remove(currInfoPanel);
+        }
+
+        JPanel infoPanel = new JPanel();
+        infoPanel.setLayout(new BoxLayout(infoPanel, BoxLayout.Y_AXIS));
+
+        JLabel locationText = new JLabel("Location: " + currLocation.toString());
+        JLabel playerStats = new JLabel("<html>Lives: " + player.getLives()
+                + "<br>Currency: " + player.getCurrencies()[0] + "</html>");
+
+        infoPanel.add(new JLabel(player.toString()));
+        infoPanel.add(locationText);
+        infoPanel.add(playerStats);
+
+        frame.add(infoPanel);
+        currInfoPanel = infoPanel;
     }
 
     public int travel(){
